@@ -100,5 +100,15 @@ public class User {
 		return age;
 	}
 	
+	/**
+	 * Get the user's full (first and last) name.
+	 * 
+	 * @return the user's full name
+	 */
+	public String getFullName() {
+		// Wait...the order here doesn't seem quite right...
+		// I think I found the bug!!!
+		return this.getLastName() + " " + this.getFirstName();
+	}
 	
 }
