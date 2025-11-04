@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Log in - CMC{% endblock %}
+
+{% block content %}
+<section class="auth-form">
+    <h2>Log in</h2>
+    <form method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Sign in</button>
+    </form>
+    <p class="alt-link">Don't have an account? <a href="{{ url_for('register') }}">Create one here</a>.</p>
+</section>
+{% endblock %}
