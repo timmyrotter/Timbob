@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Register - CMC{% endblock %}
+
+{% block content %}
+<section class="auth-form">
+    <h2>Create an account</h2>
+    <form method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="confirm_password">Confirm password</label>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+
+        <button type="submit">Register</button>
+    </form>
+    <p class="alt-link">Already have an account? <a href="{{ url_for('login') }}">Log in</a>.</p>
+</section>
+{% endblock %}

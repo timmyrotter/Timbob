@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - CMC{% endblock %}
+
+{% block content %}
+<section class="dashboard">
+    <div class="search-panel">
+        <h2>Find your next school</h2>
+        <form method="get" action="{{ url_for('dashboard') }}" class="search-form">
+            <input type="text" name="q" placeholder="Search by name, city, or state" value="{{ query }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <div class="content-columns">
+        <div class="column">
+            <h3>Search results</h3>
+            {% if schools %}
+                <ul class="card-list">
+                    {% for school in schools %}
+                        <li class="card">
+                            <h4><a href="{{ url_for('school_detail', school_id=school['id']) }}">{{ school['name'] }}</a></h4>
+                            <p class="location">{{ school['city'] }}, {{ school['state'] }}</p>
+                            <p class="tuition">Tuition: ${{ "{:,}".format(school['tuition']) }}</p>
+                            <form method="post" action="{{ url_for('save_school', school_id=school['id']) }}">
+                                <button type="submit">Save school</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No schools match your search yet. Try a different term.</p>
+            {% endif %}
+        </div>
+
+        <div class="column">
+            <h3>Saved schools</h3>
+            {% if saved_schools %}
+                <ul class="card-list">
+                    {% for school in saved_schools %}
+                        <li class="card">
+                            <h4><a href="{{ url_for('school_detail', school_id=school['id']) }}">{{ school['name'] }}</a></h4>
+                            <p class="location">{{ school['city'] }}, {{ school['state'] }}</p>
+                            <form method="post" action="{{ url_for('unsave_school', school_id=school['id']) }}">
+                                <button type="submit" class="secondary">Remove</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>You haven't saved any schools yet. Start exploring and add your favorites here.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
