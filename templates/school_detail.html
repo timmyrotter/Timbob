@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{ school['name'] }} - CMC{% endblock %}
+
+{% block content %}
+<article class="school-detail">
+    <a class="back-link" href="{{ url_for('dashboard') }}">&larr; Back to search</a>
+    <h2>{{ school['name'] }}</h2>
+    <p class="location">{{ school['city'] }}, {{ school['state'] }}</p>
+    <p class="tuition">Tuition: ${{ "{:,}".format(school['tuition']) }}</p>
+    <p class="student-body">Student body: {{ school['student_body'] }} students</p>
+    <p class="description">{{ school['description'] }}</p>
+    <p><a href="{{ school['website'] }}" target="_blank" rel="noopener">Visit school website</a></p>
+
+    <form method="post" action="{{ url_for('save_school', school_id=school['id']) }}">
+        <button type="submit">Save to my list</button>
+    </form>
+</article>
+{% endblock %}
