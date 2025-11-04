@@ -1,1 +1,1 @@
-Flask>=3.0
+# No external dependencies required; built-in Python standard library only.

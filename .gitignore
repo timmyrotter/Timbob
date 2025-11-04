@@ -99,3 +99,6 @@ nb-configuration.xml
 ## OS X
 ##########################
 .DS_Store
+
+# Choose My College database
+cmc.db
